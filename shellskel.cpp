@@ -6,8 +6,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
-
 int main()
 {
 	/* The command buffer */
@@ -22,25 +20,26 @@ int main()
 		/* Prompt the user to enter the command */
 		cerr << "cmd>";
 		cin >> cmdBuff;
-
 		/* If the user wants to exit */
 		if(cmdBuff != "exit")
 		{
 			/* TODO: Create a child */
 			pid = fork();
-
 			/* TODO: Error check to make sure the child was successfully created */
-			if (pid<0)
-			{
+			if (pid<0) {
 			 perror("fork");
 			 exit(-1);
 			}
-
 			if (pid==0)
-			{  string objectString = "/bin/" + cmdBuff;
-			   execlp(objectString.c_str(), cmdBuff.c_str(), NULL);
+			{ string object = "/bin/" + cmdBuff;
+			  if(execlp(object.c_str(), cmdBuff.c_str(), NULL)<0){
+					 perror("execlp");
+					 exit(1);
+				 }
+				else
+					wait(&pid);
 			}
-
+			wait(NULL);
 			/*** TODO: If I am child, I will do this: ****/
 			/* Call execlp() to replace my program with that specified at the command line.
 			 * PLEASE NOTE: YOU CANNOT PASS cmdBuff DIRECTLY to execlp(). It is because
