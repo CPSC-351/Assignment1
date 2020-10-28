@@ -34,3 +34,4 @@
 nano .gitignore
 add "shellskel"
 add "parallel"
+add "serial"
