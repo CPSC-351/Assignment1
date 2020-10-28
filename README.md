@@ -20,11 +20,11 @@
 `g++ parallel.cpp -o parallel`<br>
 `./parallel `<br>
 ## Execution time for each downloader:
-<b>Serial Downloader:</b><br><br>
+<b>Serial Downloader:</b><br>
 real    2m41.625s<br>
 user    0m3.552s<br>
-sys     0m16.512s<br>
-<b>Parallel Downloader:</b><br><br>
+sys     0m16.512s<br><br>
+<b>Parallel Downloader:</b><br>
 real    1m54.641s<br>
 user    0m3.250s<br>
 sys     0m11.661s<br>
@@ -47,4 +47,5 @@ in parallel while the serial downloader downloads each file individually which w
 4. Repeat the experiment for 10 files (any reasonably large-sized files, e.g., 100 MB, will do).
 Is the downloader in the previous question still faster? If not so, why do you think that
 is?<br>
-Yes in the other 10 files the parallel downloader finishes faster than the serial downloader.
+Yes in the other 10 files the parallel downloader finishes faster than the serial downloader.<br>
+ <b>Implementation of Extra Credit: No ?</b>
