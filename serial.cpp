@@ -1,46 +1,75 @@
-#include <unistd.h>
 #include <stdlib.h>
-#include <sys/wait.h>
-#include <sys/types.h>
-#include <stdio.h>
-#include <iostream>
+#include <cstdlib>
 #include <fstream>
-#include <string>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <iostream>
+#include <cstring>
+#include <vector>
 using namespace std;
-int main()
-{
-  string urls[2];
-  int a = 0;
-  ifstream newFile("urls.txt");
-  //newFile.open("urls.txt");
-  if (!newFile)
-  {
-    cout<<"Error opening urls.txt"<< endl;
-    system("pause");
-    return -1;
+
+vector<string>urls;
+int count = 0;
+
+void load_urls() {
+  string url_line;
+  ifstream reader("urls.txt");
+
+  if (reader.is_open()) {
+    cout << "Very Nice. Success opne urls.txt \n";
+  }
+  else {
+    cerr << "No good sir, no open tha ting urls.txt \n";
+    exit(-1);
   }
 
-  while(!newFile.eof()){
-    getline(newFile,urls[a], '\n');
-    if (a < 3){
-    cout << "Reading urls from file..." << endl;
-    cout << urls[a] << "\n" << endl;}
+  while (!reader.eof()) {
+    reader >> url_line;
+    if (!reader.eof()) {
+      urls.push_back(url_line);
+      count++;
+    }
   }
 
-  /***********TO-DO***********
-  1. Create child process
-  2. The child uses execlp("/usr/bin/wget", "wget", <URL STRING1>, NULL) system call
-     in order to replace its program with wget program that will download the first file in
-    urls.txt (i.e. the file at URL <URL STRING1>).
-  3. The parent executes a wait() system call until the child exits.
-  4. The parent forks off another child process which downloads the next file specified in
-     urls.txt.
-  5. Repeat the above steps until all files are downloaded
-  */
+  reader.close();
+}
 
-
-
+void make_children() {
   pid_t pid;
+  for (int i = 0; i < count; i++) {
+    pid = fork();
+    if (pid < 0) {
+      cerr << "No, no cant fork";
+      exit(1);
+    }
+    else if (pid == 0) {
+      if (execlp("wget", "wget",urls.back().c_str(), NULL) < 0) {
+        perror("execlp");
+        exit(1);
+      }
+    }
+    else {
+      urls.pop_back();
+    }
+  }
+}
+
+int main(int argc, char* argv[]){
+  vector<string> urls;
+
+  load_urls();
+  make_children();  //4
+
+  while (count > 0) {
+    wait(NULL);
+    count--;
+  }
+
+  cout << endl;
+  cout << "_____________________YES, COMPLETE YES______________________\n\n";
+
 
   return 0;
 }
