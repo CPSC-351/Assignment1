@@ -61,14 +61,6 @@ int main()
   urls.pop_back();
   make_child();
   wait(NULL);
-  /***********TO-DO***********
-  1. Create child process
-  3. The parent executes a wait() system call until the child exits.
-  4. The parent forks off another child process which downloads the next file specified in
-     urls.txt.
-  5. Repeat the above steps until all files are downloaded
-  5. Repeat the above steps until all files are downloaded
-  */
-  c
+
   return 0;
 }
