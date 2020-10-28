@@ -56,7 +56,6 @@ void make_children() {
   }
 }
 
-
 int main(int argc, char* argv[]){
   vector<string> urls;
 
