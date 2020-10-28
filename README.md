@@ -18,7 +18,15 @@
 `./serial`<br> 
 `g++ parallel.cpp -o parallel`<br>
 `./parallel `<br>
-
+## Execution time for each downloader:
+<b>Serial Downloader:</b><br>
+real    2m41.625s<br>
+user    0m3.552s<br>
+sys     0m16.512s<br>
+<b>Parallel Downloader:</b><br>
+real    1m54.641s<br>
+user    0m3.250s<br>
+sys     0m11.661s<br>
 <b>Questions:</b>
 1. In the output of time, what is the difference between real, user, and sys times?<br>
 For the parallel downloader the real time is 1 min 54.641sec, the user time is 0 min 3.250sec, the system time is 0 min 11.661sec.
@@ -26,8 +34,8 @@ For the serial downloader the real time is 2 min 41.625sec, the user time is 0 m
 In both of the downloaders the downloaders the real time is the longest then the user time and finally the fastest is the sys time.
 
 2. Which is longer: user time or sys time? Use your knowledge to explain why.<br>
-The sys time is longer in both of the downloaders,the user time is the amount of time spent outside of the kernel 
-and the sys time is the time spent inside of the kernel. Meaning this process spends more time inside of the kernel than inside making the sys time longer
+The sys time is longer in both of the downloaders,the user time is the amount of time spent in user mode outside of the kernel 
+and the sys time is the time spent inside of the kernel. Meaning this process spends more time inside of the kernel than outside making the sys time longer
 than the user time.                                                                       
 
 3. When downloading the files above, which downloader finishes faster? Why do you think
