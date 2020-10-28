@@ -11,8 +11,9 @@
 using namespace std;
 
 vector<string>urls;
+int count = 0;
 
-void load_urls(){
+void load_urls() {
   string url_line;
   ifstream reader("urls.txt");
 
@@ -28,15 +29,16 @@ void load_urls(){
     reader >> url_line;
     if (!reader.eof()) {
       urls.push_back(url_line);
+      count++;
     }
   }
 
   reader.close();
 }
 
-void make_child() {
-  cout << "Hello i am a child. Let me access that URL for you."
+void make_children() {
   pid_t pid;
+  for (int i = 0; i < count; i++) {
     pid = fork();
     if (pid < 0) {
       cerr << "No, no cant fork";
@@ -48,27 +50,26 @@ void make_child() {
         exit(1);
       }
     }
+    else {
+      urls.pop_back();
+    }
+  }
 }
 
-int main()
-{
-  cout <<"This is the SERIAL downloader parent. Let me load the URLs to download..." << endl;
+int main(int argc, char* argv[]){
+  vector<string> urls;
+
   load_urls();
-  cout << "URLs are loaded and ready to go!" << endl;
-  make_child();
-  wait(NULL);
-  
-  urls.pop_back();
-  make_child();
-  wait(NULL);
-  /***********TO-DO***********
-  1. Create child process
-  3. The parent executes a wait() system call until the child exits.
-  4. The parent forks off another child process which downloads the next file specified in
-     urls.txt.
-  5. Repeat the above steps until all files are downloaded
-  5. Repeat the above steps until all files are downloaded
-  */
-  c
+  make_children();  //4
+
+  while (count > 0) {
+    wait(NULL);
+    count--;
+  }
+
+  cout << endl;
+  cout << "_____________________YES, COMPLETE YES______________________\n\n";
+
+
   return 0;
 }
