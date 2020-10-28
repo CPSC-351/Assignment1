@@ -1,18 +1,76 @@
-#include <unistd.h>
 #include <stdlib.h>
-#include <sys/wait.h>
+#include <cstdlib>
+#include <fstream>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <iostream>
-#include <string>
+#include <cstring>
+#include <vector>
 using namespace std;
-int main(){
-/*****************************************TO-DO****************************************
-1. The parent forks off n children, where n is the number of URLs in urls.txt.
-2. Each child executes execlp("/usr/bin/wget", "wget", <URL STRING>, NULL) system
-   call where each <URL STRING> is a distinct URL in urls.txt.
-3. The parent calls wait() (n times in a row) and waits for all children to terminate.
-4. The parent exits.
-*/
+
+vector<string>urls;
+int count = 0;
+
+void load_urls() {
+  string url_line;
+  ifstream reader("urls.txt");
+
+  if (reader.is_open()) {
+    cout << "Very Nice. Success opne urls.txt \n";
+  }
+  else {
+    cerr << "No good sir, no open tha ting urls.txt \n";
+    exit(-1);
+  }
+
+  while (!reader.eof()) {
+    reader >> url_line;
+    if (!reader.eof()) {
+      urls.push_back(url_line);
+      count++;
+    }
+  }
+
+  reader.close();
+}
+
+void make_children() {
+  pid_t pid;
+  for (int i = 0; i < count; i++) {
+    pid = fork();
+    if (pid < 0) {
+      cerr << "No, no cant fork";
+      exit(1);
+    }
+    else if (pid == 0) {
+      if (execlp("wget", "wget",urls.back().c_str(), NULL) < 0) {
+        perror("execlp");
+        exit(1);
+      }
+    }
+    else {
+      urls.pop_back();
+    }
+  }
+}
+
+
+int main(int argc, char* argv[]){
+  vector<string> urls;
+
+  load_urls();
+  make_children();  //4
+
+  while (count > 0) {
+    wait(NULL);
+    count--;
+  }
+
+  cout << endl;
+  cout << "_____________________YES, COMPLETE YES______________________\n\n";
+
+
   return 0;
 }
