@@ -5,6 +5,20 @@
  Tiffanny Hernaez - tiffannyhernaez@csu.fullerton.edu<br>
  Sagar Joshi - sagar0698@csu.fullerton.edu<br>
  Stephanie Casillas - stepc25@csu.fullerton.edu<br>
+ <b>For this program we used: C++<b>
+
+## To execute this program on Tuffix, first clone the repository:
+`git clone https://github.com/CPSC-351/Assignment1.git`
+
+## For part 1 run the program on Tuffix using:
+`g++ shellskel.cpp -o shellskel
+`./`shellskel
+## For part 2 run the program on Tuffix using:
+`g++ serial.cpp -o serial
+`./`serial 
+`g++ parallel.cpp -o parallel
+`./`parallel 
+
 <b>Questions:</b>
 1. In the output of time, what is the difference between real, user, and sys times?<br>
 For the parallel downloader the real time is 1 min 54.641sec, the user time is 0 min 3.250sec, the system time is 0 min 11.661sec.
