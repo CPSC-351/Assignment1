@@ -5,7 +5,8 @@
  Tiffanny Hernaez - tiffannyhernaez@csu.fullerton.edu<br>
  Sagar Joshi - sagar0698@csu.fullerton.edu<br>
  Stephanie Casillas - stepc25@csu.fullerton.edu<br>
- <b>For this program we used: C++<b>
+ 
+ <b>For this program we used: C++</b>
 
 ## To execute this program on Tuffix, first clone the repository:
 `git clone https://github.com/CPSC-351/Assignment1.git`
