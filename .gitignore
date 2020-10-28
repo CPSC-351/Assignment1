@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+nano .gitignore
+add "shellskel"
+add "parallel"
