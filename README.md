@@ -11,13 +11,13 @@
 `git clone https://github.com/CPSC-351/Assignment1.git`
 
 ## For part 1 run the program on Tuffix using:
-`g++ shellskel.cpp -o shellskel
-`./`shellskel
+`g++ shellskel.cpp -o shellskel`<br>
+`./shellskel`
 ## For part 2 run the program on Tuffix using:
-`g++ serial.cpp -o serial
-`./`serial 
-`g++ parallel.cpp -o parallel
-`./`parallel 
+`g++ serial.cpp -o serial`<br>
+`./serial`<br> 
+`g++ parallel.cpp -o parallel`<br>
+`./parallel `<br>
 
 <b>Questions:</b>
 1. In the output of time, what is the difference between real, user, and sys times?<br>
