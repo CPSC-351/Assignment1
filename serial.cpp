@@ -4,28 +4,43 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <iostream>
-#include <fstream>
 #include <string>
+#include <fstream>
 using namespace std;
-int main()
-{
-  string urls[2];
-  int a = 0;
-  ifstream newFile("urls.txt");
-  //newFile.open("urls.txt");
-  if (!newFile)
-  {
-    cout<<"Error opening urls.txt"<< endl;
-    system("pause");
-    return -1;
-  }
+int main(){
 
-  while(!newFile.eof()){
-    getline(newFile,urls[a], '\n');
-    if (a < 3){
-    cout << "Reading urls from file..." << endl;
-    cout << urls[a] << "\n" << endl;}
+string tempStr;
+ifstream myfile;
+
+pid_t child;
+
+myfile.open ("urls.txt");
+
+if(!myfile)
+{
+  cout<<"Error Opening File" << endl;
+  system("pause");
+  return -1;
+}
+
+if (myfile)
+{
+  while(getline(myfile, tempStr))
+  {
+    child = fork();
+    if (child == 0)
+    {
+      execlp("/usr/bin/wget", "wget", tempStr, NULL);
+      //cout << endl << tempStr << endl;
+      wait(NULL);
+      exit(0);
+    }
   }
+}
+
+
+//execlp("/usr/bin/wget", "wget", "https://www.google.com/", NULL);
+
 
 
   /***********TO-DO***********
@@ -38,10 +53,6 @@ int main()
      urls.txt.
   5. Repeat the above steps until all files are downloaded
   */
-
-
-
-  pid_t pid;
 
   return 0;
 }
