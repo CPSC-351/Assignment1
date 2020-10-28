@@ -5,7 +5,7 @@
  Tiffanny Hernaez - tiffannyhernaez@csu.fullerton.edu<br>
  Sagar Joshi - sagar0698@csu.fullerton.edu<br>
  Stephanie Casillas - stepc25@csu.fullerton.edu<br>
-<b>Questions:<b>
+<b>Questions:</b>
 1. In the output of time, what is the difference between real, user, and sys times?
 For the parallel downloader the real time is 1 min 54.641sec, the user time is 0 min 3.250sec, the system time is 0 min 11.661sec.
 For the serial downloader the real time is 2 min 41.625sec, the user time is 0 min 3.552sec,the system time is 0 min 16.512sec.
