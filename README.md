@@ -19,15 +19,15 @@
 `g++ parallel.cpp -o parallel`<br>
 `./parallel `<br>
 ## Execution time for each downloader:
-<b>Serial Downloader:</b><br>
+<b>Serial Downloader:</b><br><br>
 real    2m41.625s<br>
 user    0m3.552s<br>
 sys     0m16.512s<br>
-<b>Parallel Downloader:</b><br>
+<b>Parallel Downloader:</b><br><br>
 real    1m54.641s<br>
 user    0m3.250s<br>
 sys     0m11.661s<br>
-<b>Questions:</b>
+## Questions:
 1. In the output of time, what is the difference between real, user, and sys times?<br>
 For the parallel downloader the real time is 1 min 54.641sec, the user time is 0 min 3.250sec, the system time is 0 min 11.661sec.
 For the serial downloader the real time is 2 min 41.625sec, the user time is 0 min 3.552sec,the system time is 0 min 16.512sec.
