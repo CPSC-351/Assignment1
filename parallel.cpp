@@ -18,10 +18,10 @@ void load_urls() {
   ifstream reader("urls.txt");
 
   if (reader.is_open()) {
-    cout << "Very Nice. Success opne urls.txt \n";
+    cout << "Very Nice. Success opening urls.txt \n";
   }
   else {
-    cerr << "No good sir, no open tha ting urls.txt \n";
+    cerr << "No good sir, not opening urls.txt \n";
     exit(-1);
   }
 
@@ -41,7 +41,7 @@ void make_children() {
   for (int i = 0; i < count; i++) {
     pid = fork();
     if (pid < 0) {
-      cerr << "No, no cant fork";
+      cerr << "No, no fork";
       exit(1);
     }
     else if (pid == 0) {
