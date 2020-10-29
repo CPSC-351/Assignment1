@@ -35,7 +35,7 @@ void load_urls(){
 }
 
 void make_child() {
-  cout << "Hello i am a child. Let me access that URL for you."
+  cout << "Hello i am a child. Let me access that URL for you.";
   pid_t pid;
     pid = fork();
     if (pid < 0) {
