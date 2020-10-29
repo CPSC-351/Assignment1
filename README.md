@@ -49,4 +49,4 @@ Is the downloader in the previous question still faster? If not so, why do you t
 is?<br>
 Yes in the other 10 files the parallel downloader finishes faster than the serial downloader.<br>
 
-<b>Implementation of Extra Credit: No ?</b>
+<b>Implementation of Extra Credit: No</b>
